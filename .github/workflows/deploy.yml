@@ -19,13 +19,13 @@ jobs:
           dotnet-version: '8.0.x'
 
       - name: Restore dependencies
-        run: dotnet restore todolist/main.csproj
+        run: dotnet restore todolist/todolist/main.csproj
 
       - name: Build
-        run: dotnet build todolist/main.csproj --configuration Release
+        run: dotnet build todolist/todolist/main.csproj --configuration Release
 
       - name: Publish
-        run: dotnet publish todolist/main.csproj --configuration Release --output ./publish
+        run: dotnet publish todolist/todolist/main.csproj --configuration Release --output ./publish
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
@@ -34,4 +34,3 @@ jobs:
           slot-name: production
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
           package: ./publish
-
