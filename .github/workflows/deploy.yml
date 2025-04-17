@@ -13,19 +13,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up .NET
+      - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '8.0.x'
 
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore todolist/todolist/main.csproj
 
-      - name: Build the app
-        run: dotnet build --configuration Release
+      - name: Build
+        run: dotnet build todolist/todolist/main.csproj --configuration Release
 
-      - name: Publish the app
-        run: dotnet publish --configuration Release --output ./publish
+      - name: Publish
+        run: dotnet publish todolist/todolist/main.csproj --configuration Release --output ./publish
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
